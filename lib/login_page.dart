@@ -1,3 +1,4 @@
+import 'package:camp_aula_03/calculator_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -85,13 +86,28 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               const Divider(),
-              const SizedBox(
-                width: 5001,
+              SizedBox(
+                width: double.infinity,
                 child: FloatingActionButton(
                   isExtended: true,
-                  onPressed: null,
+                  onPressed: () {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (BuildContext context) =>
+                    //         const CalculatorPage(),
+                    //   ),
+                    // );
+                     Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const CalculatorPage(),
+                      ),
+                    );
+                  },
                   backgroundColor: Colors.black,
-                  child: Text(
+                  child: const Text(
                     'ENTRAR',
                     style: TextStyle(
                       color: Colors.white,
