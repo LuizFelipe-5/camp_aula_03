@@ -11,9 +11,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'App aula 03',
+      title: 'Calculadora IMC',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: const Color(0xffC1007E),
+        primarySwatch: MaterialColor(
+          const Color(0xffC1007E).value,
+          {
+            50: Colors.pink.shade50,
+            100: Colors.pink.shade100,
+            200: Colors.pink.shade200,
+            300: Colors.pink.shade300,
+            400: Colors.pink.shade400,
+            500: Colors.pink.shade500,
+            600: Colors.pink.shade600,
+            700: Colors.pink.shade700,
+            800: Colors.pink.shade800,
+            900: Colors.pink.shade900,
+          },
+        ),
       ),
       home: const LoginPage(),
     );
