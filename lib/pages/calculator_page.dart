@@ -1,3 +1,4 @@
+import 'package:camp_aula_03/controllers/calculator_controller.dart';
 import 'package:flutter/material.dart';
 
 class CalculatorPage extends StatefulWidget {
@@ -8,11 +9,7 @@ class CalculatorPage extends StatefulWidget {
 }
 
 class _CalculatorPageState extends State<CalculatorPage> {
-  final peso_Controller = TextEditingController();
-  final altura_Controller = TextEditingController();
-  double peso = 0;
-  double altura = 0;
-  String resposta_IMC = "";
+  final controller = CalculatorController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +34,13 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 20, left: 150),
-                  child: Image.asset("assets/images/Vector.png"),
+                  child: GestureDetector(
+                    child: Image.asset("assets/images/Vector.png"),
+                    onTap: () => Navigator.pushReplacementNamed(
+                      context,
+                      '/calculadora',
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -73,7 +76,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   ),
                 ),
                 TextField(
-                  controller: peso_Controller,
+                  controller: controller.peso_Controller,
                   // Explicar um possível erro, que o campo não pode aceitar caracteres
                   keyboardType: TextInputType.number,
                 ),
@@ -91,7 +94,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   ),
                 ),
                 TextField(
-                  controller: altura_Controller,
+                  controller: controller.altura_Controller,
                   keyboardType: TextInputType.number,
                 ),
                 const Divider(),
@@ -104,37 +107,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                     onPressed: () {
                       setState(
                         () {
-                          peso = double.parse(
-                            peso_Controller.text.isEmpty
-                                ? "0"
-                                : peso_Controller.text,
-                          );
-
-                          altura = double.parse(
-                            altura_Controller.text.isEmpty
-                                ? "0"
-                                : altura_Controller.text,
-                          );
-
-                          double IMC = (peso * 1000) / ((altura * altura) / 10);
-
-                          if (IMC < 18.6) {
-                            resposta_IMC = 'Você está abaixo do Peso';
-                          } else if (IMC > 18.6 && IMC < 24.9) {
-                            resposta_IMC = 'Você está no seu Peso Ideal';
-                          } else if (IMC > 24.9 && IMC < 29.9) {
-                            resposta_IMC = 'Você está Levemente acima do Peso';
-                          } else if (IMC > 29.9 && IMC < 34.9) {
-                            resposta_IMC = 'Você está com Obesidade Grau I';
-                          } else if (IMC > 34.9 && IMC < 39.9) {
-                            resposta_IMC = 'Você está com Obesidade Grau I';
-                          } else if (IMC > 34.9 && IMC < 39.9) {
-                            resposta_IMC = 'Você está com Obesidade Grau II';
-                          } else if (IMC > 39.0) {
-                            resposta_IMC = 'Você está com Obesidade Grau III';
-                          } else if (IMC > 50) {
-                            resposta_IMC = "";
-                          }
+                          controller.calcularIMC();
                         },
                       );
                     },
@@ -150,7 +123,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   ),
                 ),
                 const Divider(),
-                Text(resposta_IMC.isEmpty ? "" : resposta_IMC),
+                Text(
+                  controller.resposta_IMC.isEmpty
+                      ? ""
+                      : controller.resposta_IMC,
+                ),
               ],
             ),
           ),

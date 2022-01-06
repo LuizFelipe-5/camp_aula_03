@@ -1,4 +1,5 @@
-import 'package:camp_aula_03/calculator_page.dart';
+import 'package:camp_aula_03/components/textfield_login_component.dart';
+import 'package:camp_aula_03/pages/calculator_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -24,18 +25,23 @@ class LoginPage extends StatelessWidget {
                   scale: 1,
                 ),
               ),
-              const Text(
-                'Seja bem vindo!',
-                style: TextStyle(
-                  fontSize: 40,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white,
+              const Padding(
+                padding: EdgeInsets.only(
+                  right: 42,
+                ),
+                child: Text(
+                  'Seja bem vindo!',
+                  style: TextStyle(
+                    fontSize: 37,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               const Padding(
                 padding: EdgeInsets.only(
-                  right: 65,
+                  right: 80,
                   bottom: 30,
                 ),
                 child: Text(
@@ -48,42 +54,14 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const TextField(
-                decoration: InputDecoration(
-                  hintText: 'usuário',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  contentPadding: EdgeInsets.fromLTRB(30, 20, 20, 20),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(200),
-                    ),
-                    borderSide: BorderSide(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+              TextfieldLoginComponent(
+                nome_textField: 'usuário',
+                password: false,
               ),
               const Divider(),
-              const TextField(
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: 'senha',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  contentPadding: EdgeInsets.fromLTRB(30, 20, 20, 20),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(200),
-                    ),
-                    borderSide: BorderSide(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+              TextfieldLoginComponent(
+                nome_textField: 'senha',
+                password: true,
               ),
               const Divider(),
               SizedBox(
@@ -98,7 +76,7 @@ class LoginPage extends StatelessWidget {
                     //         const CalculatorPage(),
                     //   ),
                     // );
-                     Navigator.pushReplacement(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) =>

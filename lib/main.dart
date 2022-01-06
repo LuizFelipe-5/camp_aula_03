@@ -1,4 +1,5 @@
-import 'package:camp_aula_03/login_page.dart';
+import 'package:camp_aula_03/pages/calculator_page.dart';
+import 'package:camp_aula_03/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,7 +31,11 @@ class MyApp extends StatelessWidget {
           },
         ),
       ),
-      home: const LoginPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LoginPage(),
+        '/calculadora': (context) => const CalculatorPage(),
+      },
     );
   }
 }
