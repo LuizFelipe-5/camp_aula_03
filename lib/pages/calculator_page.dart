@@ -1,5 +1,6 @@
 import 'package:camp_aula_03/controllers/calculator_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({Key? key}) : super(key: key);
@@ -77,8 +78,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 ),
                 TextField(
                   controller: controller.peso_Controller,
-                  // Explicar um possível erro, que o campo não pode aceitar caracteres
+                  // Explicar um possível erro, que o campo não pode aceitar caracteres e ensinar o formatter
                   keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp('[0-9]'))
+                  ],
                 ),
                 const Divider(),
                 const Padding(
